@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PA Cities Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"/>
+</head>
+<body>
+
+  <div id="map" style="width: 600px; height: 400px;"></div>
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+
+  <script>
+
+  var map = L.map('map').setView([40, -77], 7);
+
+  // Tile Layer
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var Harrisburg = {
+      name: 'Harrisburg', 
+      lat: 40.2732,
+      lng: -76.8867,
+      population: 50135
+    }
+    
+    var Lancaster = {
+      name: 'Lancaster',
+      lat: 40.0379, 
+      lng: -76.3055,
+      population: 57503
+    };
+
+  
+// Add circle markers
+  L.circleMarker([Harrisburg.lat, Harrisburg.lng], {
+    radius:  Math.sqrt(Harrisburg.population)/10,
+    color: 'red',
+    fillcolor: 'blue',
+    weight: 5
+
+      }).bindTooltip ("<b>" + "<i>" + 'Name: ' + "</b>" + Harrisburg.name + "<br>" + "<b>" + "Population: " + "</b>" + Harrisburg.population 
+      ).addTo(map);
+    
+
+  L.circleMarker([Lancaster.lat, Lancaster.lng], {
+    radius: Math.sqrt(Lancaster.population)/10,
+    color: 'gold',
+    fillcolor: 'blue',
+    weight: 5
+
+      }).bindTooltip ("<b>" + "<i>" + 'Name: ' + "</b>" + Lancaster.name + "<br>" + "<b>" + "Population: " + "</b>" + Lancaster.population
+      ).addTo(map)
+
+  </script>
+
+</body>
+</html>
